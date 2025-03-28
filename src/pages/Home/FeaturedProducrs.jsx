@@ -1,7 +1,7 @@
 import React from 'react'
 import Slider from 'react-slick'
 import {products} from '../../data';
-
+import Button from '../../components/ui/Button';
 const FeaturedProducrs = () => {
     const settings = {
         dots: false, 
@@ -82,7 +82,7 @@ const FeaturedProducrs = () => {
                                         $ {product.price}
                                     </h4>
                                 </div>
-                                
+                                <Button variant='primary-btn banner-btn' size='small'>Add To Cart</Button>
                             </div>
                             ))}
                             
