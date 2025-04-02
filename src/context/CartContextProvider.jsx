@@ -7,6 +7,13 @@ const CartContextProvider = ({children}) => {
     const saveCartItems = localStorage.getItem("cartItems");
     return saveCartItems ? JSON.parse(saveCartItems) : [];
   });
+
+  const [discount, setDiscount] = useState(() => {
+    const savedDiscount = localStorage.getItem('discount');
+    return savedDiscount ? parseFloat(savedDiscount) : 0;
+  });
+
+
   
   
   const addToCart = (product) => {
@@ -39,7 +46,7 @@ const CartContextProvider = ({children}) => {
         return prevItems.filter((item) => item.id !== productId);
       } 
       return prevItems.map((item) => (
-        item.id === productId
+        item.id === productId && item.quantity > 1
         ? {...item, quantity: item.quantity - 1 } : item
       ));
     });
@@ -63,6 +70,7 @@ const CartContextProvider = ({children}) => {
     setCartItems([])
   )
 
+  
   const cartTotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -76,6 +84,29 @@ const CartContextProvider = ({children}) => {
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
   }, [cartItems])
+
+  useEffect(() => {
+    localStorage.setItem('discount', discount.toString());
+  }, [discount]);
+
+  const [deliveryCharges, setDeliveryCharges] = useState(0);
+
+  const applyDiscount = (code) => {
+    if(code === 'save10') {
+      setDiscount(10);
+    } else {
+      setDiscount(0);
+    }
+  }
+
+  const discountAmount = cartTotal * (discount / 100);
+
+  const discountedTotal = cartTotal - discountAmount;
+
+  const grandTotal = discountedTotal + deliveryCharges;
+
+  const formatPrice = (price) => `$${parseFloat(price).toFixed(2)}`;
+
   return (
     <CartContext.Provider 
     value={{
@@ -88,6 +119,13 @@ const CartContextProvider = ({children}) => {
       clearCart,
       cartTotal,
       removeItem,
+      discountAmount,
+      discount,
+      grandTotal,
+      deliveryCharges,
+      applyDiscount,
+      formatPrice,
+      cartTotal,
       }}
     >
       {children}

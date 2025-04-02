@@ -16,20 +16,6 @@ const FeaturedProducrs = () => {
         slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 3000,
-        // responsive: [
-        //   {
-        //     breakpoint: 1024, 
-        //     settings: {
-        //       slidesToShow: 2,
-        //     },
-        //   },
-        //   {
-        //     breakpoint: 600, 
-        //     settings: {
-        //       slidesToShow: 1,
-        //     },
-        //   },
-        // ],
     };
 
     if (loading) {

@@ -2,18 +2,33 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContextProvider';
 const Cart = () => {
-    const { addToCart, removeFromCart, cartItems, removeItem, clearCart, increaseQuantity, decreaseQuantity } = useContext(CartContext)
+    const {
+        addToCart,
+        removeFromCart,
+        cartItems,
+        removeItem,
+        clearCart,
+        increaseQuantity,
+        decreaseQuantity,
+        discountAmount,
+        discount,
+        grandTotal,
+        deliveryCharges,
+        applyDiscount,
+        formatPrice,
+        cartTotal,
+    } = useContext(CartContext)
 
-       if(cartItems.length === 0) {
+    if (cartItems.length === 0) {
         return (
             <div className="cart-empty">
-            <h2>Your Cart is Empty</h2>
-            <Link to="/" className="btn btn-primary">
-              Continue Shopping
-            </Link>
-          </div>
+                <h2>Your Cart is Empty</h2>
+                <Link to="/" className="btn btn-primary">
+                    Continue Shopping
+                </Link>
+            </div>
         )
-       }
+    }
     return (
         <section className="inner-sec-bg cart-sec">
             <div className="container">
@@ -116,26 +131,26 @@ const Cart = () => {
                                         <h4 className="secondry-text color-b mb-38 ">Order Summary</h4>
                                         <div className="d-flex justify-content-between">
                                             <h5 className="text-sm-hd color-b">Subtotal</h5>
-                                            <h5 className="text-sm-hd color-b">$100.00</h5>
+                                            <h5 className="text-sm-hd color-b">{formatPrice(cartTotal)}</h5>
                                         </div>
                                         <div className="cart-b-border-b mt-4 mb-4"></div>
                                         <div className="d-flex justify-content-between">
                                             <h5 className="text-sm-hd color-b">Delivery Charges:</h5>
-                                            <h5 className="text-sm-hd color-b">-</h5>
+                                            <h5 className="text-sm-hd color-b">{formatPrice(deliveryCharges)}</h5>
                                         </div>
                                         <div className="cart-b-border-b mt-4 mb-4"></div>
                                         <div className="d-flex justify-content-between">
                                             <h5 className="text-sm-hd color-b">Discount Price:</h5>
-                                            <h5 className="text-sm-hd color-b">-</h5>
+                                            <h5 className="text-sm-hd color-b">{formatPrice(discountAmount)}</h5>
                                         </div>
                                         <div className="cart-b-border-b mt-4 mb-4"></div>
                                         <div className="d-flex justify-content-between">
                                             <h5 className="text-sm-hd bold color-b">Grand Total:</h5>
-                                            <h5 className="text-sm-hd bold  secondry-color">$100.00</h5>
+                                            <h5 className="text-sm-hd bold  secondry-color">{formatPrice(grandTotal)}</h5>
                                         </div>
                                         <div className="text-center m-t-left">
                                             <button className="primary-btn banner-btn cart-b-btn">Checkout</button>
-                                            <button className=" banner-btn cart-b-btn-2">Continue Shopping</button>
+                                            <Link to={'/'} className=" banner-btn cart-b-btn-2">Continue Shopping</Link>
                                         </div>
                                     </div>
                                 </div>
