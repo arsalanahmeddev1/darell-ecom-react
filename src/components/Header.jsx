@@ -1,7 +1,9 @@
-import React from 'react'
 import {navList} from '../data';
 import {Link} from 'react-router-dom';
+import React, {useContext} from 'react';
+import {CartContext} from '../context/CartContextProvider';
 const Header = () => {
+  const {cartCount} = useContext(CartContext);
   return (
     <header className="header">
   <div className="container">
@@ -124,8 +126,8 @@ const Header = () => {
                   className="heart-icon">3</span></a>
             </li>
             <li className="h-icon">
-              <a href=""><img src="./assets/images/shp-icon.svg" className="img-fluid shop-img" alt=""/><span
-                  className="shop-icon">12</span></a>
+              <Link to={`cart`}><img src="./assets/images/shp-icon.svg" className="img-fluid shop-img" alt=""/><span
+                  className="shop-icon">{cartCount}</span></Link>
             </li>
           </ul>
 

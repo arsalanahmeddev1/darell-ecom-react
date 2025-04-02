@@ -1,6 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import Button from './Button';
+import {CartContext} from '../../context/CartContextProvider';
 const ProductCard = ({product}) => {
+  const {addToCart} = useContext(CartContext);
   const {title, description, price, image} = product
+  
+  
   return (
     <div className="prod-box-wrap-2 text-center">
       <div className="prod-box-inner">
@@ -26,6 +31,7 @@ const ProductCard = ({product}) => {
         <h4 className="primary-text mt-3">
           ${price}
         </h4>
+        <Button variant='primary-btn banner-btn mt-4' onClick={() => addToCart(product)} size='small'>Add To Cart</Button>
       </div>
     </div>
   )

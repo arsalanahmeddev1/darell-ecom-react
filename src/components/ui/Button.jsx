@@ -21,13 +21,13 @@ const Button = ({
   )
 };
 
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
-  className: PropTypes.string, 
-  variant: PropTypes.oneOf(["primary", "secondary", "danger"]),
-  size: PropTypes.oneOf(["small", "medium", "large"]), 
-  disabled: PropTypes.bool, 
-};
+// Button.propTypes = {
+//   children: PropTypes.node.isRequired,
+//   onClick: PropTypes.func,
+//   className: PropTypes.string, 
+//   variant: PropTypes.oneOf(["primary", "secondary", "danger"]),
+//   size: PropTypes.oneOf(["small", "medium", "large"]), 
+//   disabled: PropTypes.bool, 
+// };
 
 export default Button

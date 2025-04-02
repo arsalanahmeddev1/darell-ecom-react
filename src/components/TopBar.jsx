@@ -27,7 +27,7 @@ const TopBar = () => {
           </div>
           <div className="col-lg-4 col-4 ">
             <div className="logo text-center">
-              <a href="./" className=""><img src="./assets/images/logo.png" className="img-fluid" alt=""/></a>
+              <a href="./" className=""><img src="../assets/images/logo.png" className="img-fluid" alt=""/></a>
             </div>
           </div>
           <div className="col-lg-4 col-1">
